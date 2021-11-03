@@ -1,6 +1,7 @@
 package com.mhl.mall.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mhl.mall.mbg.mapper.PmsBrandMapper;
 import com.mhl.mall.mbg.model.PmsBrand;
 import com.mhl.mall.mbg.model.PmsBrandExample;

@@ -1,5 +1,7 @@
 package com.mhl.mall.common.api;
 
+import lombok.Getter;
+
 /**
  * 枚举了一些常用API操作码
  *
@@ -13,8 +15,8 @@ public enum ResultCode implements IErrorCode {
     UNAUTHORIZED(401, "暂未登录或token已经过期"),
     FORBIDDEN(403, "没有相关权限");
 
-    private long code;
-    private String message;
+    private final Long code;
+    private final String message;
 
     ResultCode(long code, String message) {
         this.code = code;
@@ -22,7 +24,7 @@ public enum ResultCode implements IErrorCode {
     }
 
     @Override
-    public long getCode() {
+    public Long getCode() {
         return code;
     }
 
