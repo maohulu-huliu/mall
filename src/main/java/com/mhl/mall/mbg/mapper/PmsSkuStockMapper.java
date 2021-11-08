@@ -2,8 +2,9 @@ package com.mhl.mall.mbg.mapper;
 
 import com.mhl.mall.mbg.model.PmsSkuStock;
 import com.mhl.mall.mbg.model.PmsSkuStockExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PmsSkuStockMapper {
     int countByExample(PmsSkuStockExample example);

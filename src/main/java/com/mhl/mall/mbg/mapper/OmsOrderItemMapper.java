@@ -2,8 +2,9 @@ package com.mhl.mall.mbg.mapper;
 
 import com.mhl.mall.mbg.model.OmsOrderItem;
 import com.mhl.mall.mbg.model.OmsOrderItemExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface OmsOrderItemMapper {
     int countByExample(OmsOrderItemExample example);

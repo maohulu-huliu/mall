@@ -1,7 +1,5 @@
 package com.mhl.mall.common.api;
 
-import lombok.Getter;
-
 /**
  * 枚举了一些常用API操作码
  *

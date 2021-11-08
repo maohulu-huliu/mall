@@ -83,13 +83,13 @@ public class SwaggerConfiguration implements WebMvcConfigurer {
         );
     }
 
-//    @SafeVarargs
-//    private <T> Set<T> newHashSet(T... ts) {
-//        if (ts.length > 0) {
-//            return new LinkedHashSet<>(Arrays.asList(ts));
-//        }
-//        return null;
-//    }
+    @SafeVarargs
+    private <T> Set<T> newHashSet(T... ts) {
+        if (ts.length > 0) {
+            return new LinkedHashSet<>(Arrays.asList(ts));
+        }
+        return null;
+    }
 
     /**
      * 通用拦截器排除swagger设置，所有拦截器都会自动加swagger相关的资源排除信息

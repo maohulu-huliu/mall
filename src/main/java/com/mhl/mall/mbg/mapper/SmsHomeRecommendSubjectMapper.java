@@ -2,8 +2,9 @@ package com.mhl.mall.mbg.mapper;
 
 import com.mhl.mall.mbg.model.SmsHomeRecommendSubject;
 import com.mhl.mall.mbg.model.SmsHomeRecommendSubjectExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SmsHomeRecommendSubjectMapper {
     int countByExample(SmsHomeRecommendSubjectExample example);

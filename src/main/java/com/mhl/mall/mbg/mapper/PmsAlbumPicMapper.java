@@ -2,8 +2,9 @@ package com.mhl.mall.mbg.mapper;
 
 import com.mhl.mall.mbg.model.PmsAlbumPic;
 import com.mhl.mall.mbg.model.PmsAlbumPicExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PmsAlbumPicMapper {
     int countByExample(PmsAlbumPicExample example);

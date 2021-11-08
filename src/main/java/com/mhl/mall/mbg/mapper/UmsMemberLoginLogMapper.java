@@ -2,8 +2,9 @@ package com.mhl.mall.mbg.mapper;
 
 import com.mhl.mall.mbg.model.UmsMemberLoginLog;
 import com.mhl.mall.mbg.model.UmsMemberLoginLogExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UmsMemberLoginLogMapper {
     int countByExample(UmsMemberLoginLogExample example);

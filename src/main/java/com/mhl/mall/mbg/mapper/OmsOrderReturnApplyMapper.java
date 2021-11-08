@@ -2,8 +2,9 @@ package com.mhl.mall.mbg.mapper;
 
 import com.mhl.mall.mbg.model.OmsOrderReturnApply;
 import com.mhl.mall.mbg.model.OmsOrderReturnApplyExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface OmsOrderReturnApplyMapper {
     int countByExample(OmsOrderReturnApplyExample example);

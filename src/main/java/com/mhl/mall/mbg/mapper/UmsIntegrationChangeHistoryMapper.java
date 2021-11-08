@@ -2,8 +2,9 @@ package com.mhl.mall.mbg.mapper;
 
 import com.mhl.mall.mbg.model.UmsIntegrationChangeHistory;
 import com.mhl.mall.mbg.model.UmsIntegrationChangeHistoryExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UmsIntegrationChangeHistoryMapper {
     int countByExample(UmsIntegrationChangeHistoryExample example);

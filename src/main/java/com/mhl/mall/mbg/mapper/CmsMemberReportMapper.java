@@ -2,8 +2,9 @@ package com.mhl.mall.mbg.mapper;
 
 import com.mhl.mall.mbg.model.CmsMemberReport;
 import com.mhl.mall.mbg.model.CmsMemberReportExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CmsMemberReportMapper {
     int countByExample(CmsMemberReportExample example);

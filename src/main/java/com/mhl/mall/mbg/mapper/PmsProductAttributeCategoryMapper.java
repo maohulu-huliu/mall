@@ -2,8 +2,9 @@ package com.mhl.mall.mbg.mapper;
 
 import com.mhl.mall.mbg.model.PmsProductAttributeCategory;
 import com.mhl.mall.mbg.model.PmsProductAttributeCategoryExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PmsProductAttributeCategoryMapper {
     int countByExample(PmsProductAttributeCategoryExample example);

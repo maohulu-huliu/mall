@@ -2,8 +2,9 @@ package com.mhl.mall.mbg.mapper;
 
 import com.mhl.mall.mbg.model.CmsSubjectCategory;
 import com.mhl.mall.mbg.model.CmsSubjectCategoryExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CmsSubjectCategoryMapper {
     int countByExample(CmsSubjectCategoryExample example);

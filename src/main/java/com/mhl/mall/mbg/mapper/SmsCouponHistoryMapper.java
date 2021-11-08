@@ -2,8 +2,9 @@ package com.mhl.mall.mbg.mapper;
 
 import com.mhl.mall.mbg.model.SmsCouponHistory;
 import com.mhl.mall.mbg.model.SmsCouponHistoryExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SmsCouponHistoryMapper {
     int countByExample(SmsCouponHistoryExample example);

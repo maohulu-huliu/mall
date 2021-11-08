@@ -2,8 +2,9 @@ package com.mhl.mall.mbg.mapper;
 
 import com.mhl.mall.mbg.model.SmsCouponProductRelation;
 import com.mhl.mall.mbg.model.SmsCouponProductRelationExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SmsCouponProductRelationMapper {
     int countByExample(SmsCouponProductRelationExample example);
