@@ -4,9 +4,9 @@ import com.mhl.mall.common.api.CommonPage;
 import com.mhl.mall.common.api.CommonResult;
 import com.mhl.mall.mbg.model.PmsBrand;
 import com.mhl.mall.service.PmsBrandService;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,13 +15,17 @@ import java.util.List;
  * @author hul
  * @date on 2021/10/20 15:19
  */
+@Api(value = "PmsBrandController", tags = "品牌管理")
 @RestController()
 @RequestMapping("/brand")
 public class PmsBrandController {
     private static final Logger LOGGER = LoggerFactory.getLogger(PmsBrandController.class);
 
-    @Autowired
-    private PmsBrandService demoService;
+    private final PmsBrandService demoService;
+
+    public PmsBrandController(PmsBrandService demoService) {
+        this.demoService = demoService;
+    }
 
     @GetMapping("list-all")
     public CommonResult<List<PmsBrand>> getBrandList() {

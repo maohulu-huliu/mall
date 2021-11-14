@@ -55,10 +55,8 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         UmsAdminExample example = new UmsAdminExample();
         example.createCriteria().andUsernameEqualTo(username);
         List<UmsAdmin> adminList = adminMapper.selectByExample(example);
-        if (adminList != null && adminList.size() > 0) {
-            return adminList.get(0);
-        }
-        return null;
+
+        return adminList.stream().findFirst().orElseGet(UmsAdmin::new);
     }
 
     @Override
@@ -72,12 +70,12 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         example.createCriteria().andUsernameEqualTo(umsAdmin.getUsername());
         List<UmsAdmin> umsAdminList = adminMapper.selectByExample(example);
         if (umsAdminList.size() > 0) {
-            throw new ApiException(HttpStatus.INTERNAL_SERVER_ERROR.value(), "用户注册失败!");
+            throw new ApiException(HttpStatus.INTERNAL_SERVER_ERROR.value(), "用户名已经注册了!");
         }
         //将密码进行加密操作
         String encodePassword = passwordEncoder.encode(umsAdmin.getPassword());
         umsAdmin.setPassword(encodePassword);
-        adminMapper.insert(umsAdmin);
+        adminMapper.insertSelective(umsAdmin);
         return umsAdmin;
     }
 

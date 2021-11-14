@@ -6,7 +6,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -20,8 +19,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/sso")
 public class UmsMemberController {
 
-    @Autowired
-    private UmsMemberService memberService;
+    private final UmsMemberService memberService;
+
+    public UmsMemberController(UmsMemberService memberService) {
+        this.memberService = memberService;
+    }
 
     @ApiOperation("获取验证码")
     @GetMapping(value = "/getAuthCode")
@@ -33,7 +35,7 @@ public class UmsMemberController {
     @ApiOperation("判断验证码是否正确")
     @PostMapping(value = "/verifyAuthCode")
     public CommonResult<Void> updatePassword(@RequestParam("telephone") @ApiParam(value = "电话号码") String telephone,
-                                       @RequestParam("authCode") @Length(min = 6, max = 6) String authCode) {
+                                             @RequestParam("authCode") @Length(min = 6, max = 6) String authCode) {
         memberService.verifyAuthCode(telephone, authCode);
         return CommonResult.success();
     }

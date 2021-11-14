@@ -1,14 +1,13 @@
 package com.mhl.mall.controller;
 
 import com.mhl.mall.common.api.CommonResult;
-import com.mhl.mall.dto.UmsAdminLoginParam;
+import com.mhl.mall.config.properties.CustomJwtProperties;
+import com.mhl.mall.dto.UmsAdminLoginDTO;
 import com.mhl.mall.mbg.model.UmsAdmin;
 import com.mhl.mall.mbg.model.UmsPermission;
 import com.mhl.mall.service.UmsAdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,18 +18,18 @@ import java.util.Map;
 
 /**
  * 后台用户管理
- * Created by macro on 2018/4/26.
  */
 @RestController
 @Api(value = "UmsAdminController", tags = "后台用户管理")
 @RequestMapping("/admin")
 public class UmsAdminController {
-    @Autowired
-    private UmsAdminService adminService;
-    @Value("${jwt.tokenHeader}")
-    private String tokenHeader;
-    @Value("${jwt.tokenHead}")
-    private String tokenHead;
+    private final UmsAdminService adminService;
+    private final CustomJwtProperties customJwtProperties;
+
+    public UmsAdminController(UmsAdminService adminService, CustomJwtProperties customJwtProperties) {
+        this.adminService = adminService;
+        this.customJwtProperties = customJwtProperties;
+    }
 
     @ApiOperation(value = "用户注册")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -41,11 +40,11 @@ public class UmsAdminController {
 
     @ApiOperation(value = "登录以后返回token")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public CommonResult<Map<String, String>> login(@RequestBody @Valid UmsAdminLoginParam umsAdminLoginParam, BindingResult result) {
-        String token = adminService.login(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
+    public CommonResult<Map<String, String>> login(@RequestBody @Valid UmsAdminLoginDTO umsAdminLoginDTO, BindingResult result) {
+        String token = adminService.login(umsAdminLoginDTO.getUsername(), umsAdminLoginDTO.getPassword());
         Map<String, String> tokenMap = new HashMap<>();
         tokenMap.put("token", token);
-        tokenMap.put("tokenHead", tokenHead);
+        tokenMap.put("tokenHead", customJwtProperties.getTokenHead());
         return CommonResult.success(tokenMap);
     }
 

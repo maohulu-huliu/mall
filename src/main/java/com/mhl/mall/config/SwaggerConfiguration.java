@@ -40,9 +40,9 @@ public class SwaggerConfiguration implements WebMvcConfigurer {
                 .apiInfo(apiInfo())
                 // 接口调试地址
                 .host(swaggerProperties.getTryHost())
-                // 选择哪些接口作为swagger的doc发布
+                // 指定路径的控制器和路由作为swagger的doc发布
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.mhl.mall.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 // 支持的通讯协议集合
@@ -59,7 +59,7 @@ public class SwaggerConfiguration implements WebMvcConfigurer {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title(swaggerProperties.getApplicationName() + " Api Doc")
                 .description(swaggerProperties.getApplicationDescription())
-                .contact(new Contact("lighter", null, "123456@gmail.com"))
+                .contact(new Contact("lighter", null, "hulumao@aliyun.com"))
                 .version("Application Version: " + swaggerProperties.getApplicationVersion() + ", Spring Boot Version: " + SpringBootVersion.getVersion())
                 .build();
     }

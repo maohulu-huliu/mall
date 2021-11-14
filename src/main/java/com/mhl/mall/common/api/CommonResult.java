@@ -1,19 +1,18 @@
 package com.mhl.mall.common.api;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author hul
  * @date on 2021/10/20 17:18
  */
 @Data
+@NoArgsConstructor
 public class CommonResult<T> {
     private long code;
     private String message;
     private T data;
-
-    protected CommonResult() {
-    }
 
     protected CommonResult(long code, String message) {
         this.code = code;
