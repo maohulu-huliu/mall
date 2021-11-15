@@ -24,7 +24,19 @@ spring:
     elasticsearch:
       repositories:
         enabled: true
-
+    mongodb:
+      host: 47.101.176.115
+      port: 27017
+      database: mall-port
+      username: root
+      password: root123
+  rabbitmq:
+    host: 47.101.176.115 # rabbitmq的连接地址
+    port: 5672 # rabbitmq的连接端口号
+    virtual-host: /mall # rabbitmq的虚拟host
+    username: admin # rabbitmq的用户名
+    password: admin123 # rabbitmq的密码
+#    publisher-confirms: true #如果对异步消息需要回调必须设置为true
 mybatis:
   mapper-locations:
     - classpath:mapper/*.xml
