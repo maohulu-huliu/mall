@@ -4,7 +4,6 @@ import com.mhl.mall.common.exception.ApiException;
 import com.mhl.mall.config.properties.CustomRedisProperties;
 import com.mhl.mall.service.RedisService;
 import com.mhl.mall.service.UmsMemberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +15,14 @@ import java.util.Random;
  */
 @Service
 public class UmsMemberServiceImpl implements UmsMemberService {
+    private final RedisService redisService;
     private final CustomRedisProperties customRedisProperties;
 
-    public UmsMemberServiceImpl(CustomRedisProperties customRedisProperties) {
-        this.customRedisProperties = customRedisProperties;
-    }
 
-    @Autowired
-    private RedisService redisService;
+    public UmsMemberServiceImpl(CustomRedisProperties customRedisProperties, RedisService redisService) {
+        this.customRedisProperties = customRedisProperties;
+        this.redisService = redisService;
+    }
 
     @Override
     public String generateAuthCode(String telephone) {

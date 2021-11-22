@@ -23,7 +23,7 @@ spring:
   data:
     elasticsearch:
       repositories:
-        enabled: true
+        enabled: false
     mongodb:
       host: 47.101.176.115
       port: 27017

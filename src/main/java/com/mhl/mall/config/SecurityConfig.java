@@ -7,9 +7,9 @@ import com.mhl.mall.dto.AdminUserDetails;
 import com.mhl.mall.mbg.model.UmsAdmin;
 import com.mhl.mall.mbg.model.UmsPermission;
 import com.mhl.mall.service.UmsAdminService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -24,6 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -34,12 +35,16 @@ import java.util.List;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
+    @Resource
     private UmsAdminService adminService;
-    @Autowired
-    private RestfulAccessDeniedHandler restfulAccessDeniedHandler;
-    @Autowired
-    private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+
+    private final RestfulAccessDeniedHandler restfulAccessDeniedHandler;
+    private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+
+    public SecurityConfig(RestfulAccessDeniedHandler restfulAccessDeniedHandler, RestAuthenticationEntryPoint restAuthenticationEntryPoint) {
+        this.restfulAccessDeniedHandler = restfulAccessDeniedHandler;
+        this.restAuthenticationEntryPoint = restAuthenticationEntryPoint;
+    }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {

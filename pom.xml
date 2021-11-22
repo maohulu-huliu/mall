@@ -16,6 +16,12 @@
         <java.version>17</java.version>
     </properties>
     <dependencies>
+        <!--集成logstash-->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>5.3</version>
+        </dependency>
         <!--消息队列相关依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

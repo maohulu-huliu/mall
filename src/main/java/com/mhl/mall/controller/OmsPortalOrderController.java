@@ -1,20 +1,22 @@
 package com.mhl.mall.controller;
 
+import com.mhl.mall.common.api.CommonResult;
 import com.mhl.mall.dto.OrderParam;
 import com.mhl.mall.service.OmsPortalOrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 订单管理Controller
- * Created by macro on 2018/8/30.
+ *
+ * @author huliou
+ * @date 2021/11/15 22:12
  */
-@Controller
+@RestController
 @Api(tags = "订单管理")
 @RequestMapping("/order")
 public class OmsPortalOrderController {
@@ -26,9 +28,9 @@ public class OmsPortalOrderController {
     }
 
     @ApiOperation("根据购物车信息生成订单")
-    @RequestMapping(value = "/generateOrder", method = RequestMethod.POST)
-    @ResponseBody
-    public Object generateOrder(@RequestBody OrderParam orderParam) {
-        return portalOrderService.generateOrder(orderParam);
+    @PostMapping(value = "/generateOrder")
+    public CommonResult<Object> generateOrder(@RequestBody OrderParam orderParam) {
+        portalOrderService.generateOrder(orderParam);
+        return CommonResult.success();
     }
 }

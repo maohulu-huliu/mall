@@ -17,8 +17,8 @@ import java.util.List;
  * @author huliou
  * @date 2021/11/12 15:28
  */
-@Data
-@Document(indexName = "pms")
+//@Data
+//@Document(indexName = "pms")
 public class EsProduct implements Serializable {
     @Serial
     private static final long serialVersionUID = -1L;

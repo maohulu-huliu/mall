@@ -2,7 +2,6 @@ package com.mhl.mall.service.impl;
 
 import com.mhl.mall.service.RedisService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +14,11 @@ import java.util.concurrent.TimeUnit;
 @Service
 @Slf4j
 public class RedisServiceImpl implements RedisService {
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    private final StringRedisTemplate stringRedisTemplate;
+
+    public RedisServiceImpl(StringRedisTemplate stringRedisTemplate) {
+        this.stringRedisTemplate = stringRedisTemplate;
+    }
 
     @Override
     public void set(String key, String value) {

@@ -13,7 +13,6 @@ import com.mhl.mall.service.UmsAdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,6 +26,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
+import static cn.hutool.core.collection.CollUtil.isNotEmpty;
+
 /**
  * @author hul
  * @date on 2021/11/5 0:39
@@ -35,20 +36,21 @@ import java.util.List;
 @Slf4j
 public class UmsAdminServiceImpl implements UmsAdminService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UmsAdminServiceImpl.class);
+
     private final UserDetailsService userDetailsService;
     private final JwtTokenUtil jwtTokenUtil;
     private final PasswordEncoder passwordEncoder;
+
+    @Resource
+    private UmsAdminMapper adminMapper;
+    @Resource
+    private UmsAdminRoleRelationDao adminRoleRelationDao;
+
     public UmsAdminServiceImpl(UserDetailsService userDetailsService, JwtTokenUtil jwtTokenUtil, PasswordEncoder passwordEncoder) {
         this.userDetailsService = userDetailsService;
         this.jwtTokenUtil = jwtTokenUtil;
         this.passwordEncoder = passwordEncoder;
     }
-    @Resource
-    private UmsAdminMapper adminMapper;
-    @Resource
-    private UmsAdminRoleRelationDao adminRoleRelationDao;
-    @Value("${jwt.tokenHead}")
-    private String tokenHead;
 
     @Override
     public UmsAdmin getAdminByUsername(String username) {
@@ -69,7 +71,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         UmsAdminExample example = new UmsAdminExample();
         example.createCriteria().andUsernameEqualTo(umsAdmin.getUsername());
         List<UmsAdmin> umsAdminList = adminMapper.selectByExample(example);
-        if (umsAdminList.size() > 0) {
+        if (isNotEmpty(umsAdminList)) {
             throw new ApiException(HttpStatus.INTERNAL_SERVER_ERROR.value(), "用户名已经注册了!");
         }
         //将密码进行加密操作
